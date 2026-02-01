@@ -141,45 +141,6 @@
             box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
         }
 
-        /* زر VIP الجانبي */
-        .vip-side-btn {
-            position: fixed;
-            bottom: 160px;
-            left: 25px;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--vip-gold), #FFA500);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
-            cursor: pointer;
-            z-index: 2000;
-            transition: 0.3s;
-            animation: vipFloat 3s ease-in-out infinite;
-            color: #000;
-            font-weight: bold;
-        }
-        
-        .vip-side-btn:hover {
-            transform: scale(1.1);
-        }
-        
-        @keyframes vipFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        @keyframes vipPulse {
-            0% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.5); }
-            50% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.8); }
-            100% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.5); }
-        }
-        
-        @keyframes spin { 100% { transform: rotate(360deg); } }
-
         /* === علامة التحقق بجانب الإسم === */
         .user-vip-badge {
             display: inline-flex;
@@ -795,14 +756,6 @@
                 right: 15px;
             }
             
-            .vip-side-btn {
-                bottom: 160px;
-                left: 15px;
-                width: 50px;
-                height: 50px;
-                font-size: 1.2rem;
-            }
-            
             .vip-modal-content {
                 padding: 20px;
             }
@@ -838,7 +791,7 @@
                 <i class="fas fa-fire"></i>
             </button>
             <button class="btn-icon" id="themeBtn" title="تغيير الألوان"><i class="fas fa-palette"></i></button>
-            <button class="btn-icon" id="userBtn"><i class="fas fa-user"></i></button>
+            <button class="btn-icon" id="userBtn" title="إدارة الحساب"><i class="fas fa-user"></i></button>
         </div>
     </header>
 
@@ -860,36 +813,6 @@
         </div>
 
         <div class="grid" id="grid"></div>
-    </div>
-
-    <!-- زر VIP الجانبي -->
-    <div class="vip-side-btn" id="vipSideBtn" title="التطبيقات الحصرية">
-        VIP
-    </div>
-
-    <!-- Alert احترافي لطلب VIP -->
-    <div class="vip-alert-overlay" id="vipAlertOverlay"></div>
-    <div class="vip-alert" id="vipAlert">
-        <i class="fas fa-crown" style="font-size: 3rem; color: #FFD700; margin-bottom: 15px;"></i>
-        <h3 style="color: #FFD700; margin-bottom: 10px;">التطبيقات الحصرية 🔒</h3>
-        <p style="color: #aaa; margin-bottom: 15px;">هذه التطبيقات متاحة فقط لأعضاء VIP</p>
-        <div style="background: rgba(255,215,0,0.1); padding: 15px; border-radius: 10px; margin-bottom: 20px;">
-            <p style="color: #FFA500; font-size: 0.9rem;">
-                <i class="fas fa-star"></i> انضم إلى النخبة واحصل على:
-            </p>
-            <p style="color: #ccc; font-size: 0.8rem; margin-top: 8px;">
-                • تطبيقات حصرية<br>
-                • تحميل فائق السرعة<br>
-                • دعم فوري<br>
-                • تحديثات أولوية
-            </p>
-        </div>
-        <button class="main-btn vip" onclick="showVipModal()" style="margin-bottom: 10px;">
-            <i class="fas fa-bolt"></i> اشترك الآن
-        </button>
-        <button class="main-btn" onclick="hideVipAlert()" style="background: #333;">
-            لاحقاً
-        </button>
     </div>
 
     <!-- نافذة التفاصيل -->
@@ -946,30 +869,6 @@
         </div>
     </div>
 
-    <!-- تسجيل الدخول -->
-    <div class="modal-wrap" id="loginModal">
-        <div class="modal-box">
-            <i class="fas fa-user-astronaut" style="font-size: 3rem; color: var(--primary); margin-bottom: 20px;"></i>
-            <h3>تسجيل الدخول</h3>
-            <p style="color: #888; margin-bottom: 20px;">المرجو كتابة اسمك للمتابعة</p>
-            <input type="text" id="nameIn" style="width: 100%; padding: 12px; background: #222; border: 1px solid #444; color: white; border-radius: 10px; text-align: center; margin-bottom: 15px;" placeholder="الاسم...">
-            <button class="main-btn" onclick="login()">دخول</button>
-        </div>
-    </div>
-
-    <!-- الخروج -->
-    <div class="modal-wrap" id="logoutModal">
-        <div class="modal-box">
-            <i class="fas fa-sign-out-alt" style="font-size: 3rem; color: #ff7675; margin-bottom: 20px;"></i>
-            <h3>تسجيل الخروج</h3>
-            <p style="color: #888; margin-bottom: 25px;">هل أنت متأكد من تغيير الحساب؟</p>
-            <div style="display: flex; gap: 10px;">
-                <button class="main-btn" style="background: #ff7675; margin-top: 0;" onclick="logout()">نعم</button>
-                <button class="main-btn" style="background: #333; margin-top: 0;" onclick="closeModal('logoutModal')">لا</button>
-            </div>
-        </div>
-    </div>
-
     <!-- نافذة VIP -->
     <div class="modal-wrap" id="vipModal">
         <div class="modal-box">
@@ -996,6 +895,40 @@
                 </button>
                 
                 <p id="vipMessage" style="margin-top: 15px; font-size: 0.9rem; min-height: 25px; font-weight: bold;"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة إدارة الحساب -->
+    <div class="modal-wrap" id="accountModal">
+        <div class="modal-box">
+            <div class="modal-close" onclick="closeModal('accountModal')"><i class="fas fa-times"></i></div>
+            
+            <div style="text-align: center;">
+                <div style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 2rem;">
+                    <i class="fas fa-user"></i>
+                </div>
+                
+                <h3 id="accountUsername" style="margin-bottom: 5px;"></h3>
+                <p id="accountEmail" style="color: #888; font-size: 0.9rem; margin-bottom: 20px;"></p>
+                
+                <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 12px; margin-bottom: 20px; text-align: right;">
+                    <p style="color: var(--secondary); margin-bottom: 10px;">معلومات الحساب:</p>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 0.9rem;">
+                        <div>نوع العضوية:</div>
+                        <div id="accountType" style="color: var(--vip-gold); font-weight: bold;">مجاني</div>
+                        <div>تاريخ التسجيل:</div>
+                        <div id="accountCreated"></div>
+                    </div>
+                </div>
+                
+                <button class="main-btn" onclick="logout()" style="margin-bottom: 10px; background: #ff6b6b;">
+                    <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
+                </button>
+                
+                <button class="main-btn" onclick="closeModal('accountModal')" style="background: #333;">
+                    إغلاق
+                </button>
             </div>
         </div>
     </div>
@@ -1106,16 +1039,6 @@
                 size: "45.3 MB",
                 ver: "3.2.1 VIP",
                 status: "حصري"
-            },
-            {
-                id: "vip4",
-                title: "AI Video Creator",
-                desc: "إنشاء مقاطع فيديو احترافية بالذكاء الاصطناعي.",
-                img: "https://cdn-icons-png.flaticon.com/512/3161/3161837.png",
-                cat: "vip",
-                size: "52.7 MB",
-                ver: "2.3.0 VIP",
-                status: "حصري"
             }
         ];
         
@@ -1123,92 +1046,162 @@
         let currentLink = "";
         let currentThemeIndex = 0;
         let musicEnabled = false;
+        let currentUser = null;
         
-        // URL لدوال Netlify Functions
-        const NETLIFY_FUNCTIONS_URL = '/.netlify/functions';
-
         // معرفة الموقع
         const siteKnowledge = {
             name: "SABER • 55",
             description: "منصة عربية متكاملة للذكاء الاصطناعي والأدوات التقنية"
         };
 
-        window.onload = () => {
-            checkUser();
-            renderAllApps();
-            setupTabs();
-            setupSearch();
+        // === التحقق من المصادقة ===
+        async function checkAuth() {
+            try {
+                const response = await fetch('/.netlify/functions/auth-check');
+                const data = await response.json();
+                
+                if (!data.authenticated) {
+                    // التحقق من وضع الزائر
+                    const guestMode = localStorage.getItem('guestMode');
+                    const guestExpiry = localStorage.getItem('guestExpiry');
+                    
+                    if (guestMode === 'true' && Date.now() < parseInt(guestExpiry)) {
+                        // السماح للزائر لمدة 24 ساعة
+                        return { authenticated: true, user: null, guest: true };
+                    }
+                    
+                    // إعادة التوجيه إلى صفحة تسجيل الدخول
+                    window.location.href = 'login.html';
+                    return null;
+                }
+                
+                currentUser = data.user;
+                return { authenticated: true, user: data.user, guest: false };
+            } catch (error) {
+                console.error('Auth check failed:', error);
+                // في حالة الخطأ، السماح بالوصول كزائر
+                return { authenticated: true, user: null, guest: true };
+            }
+        }
+
+        // === تسجيل الخروج ===
+        async function logout() {
+            try {
+                const response = await fetch('/.netlify/functions/auth-logout', {
+                    method: 'POST'
+                });
+                
+                localStorage.removeItem('guestMode');
+                localStorage.removeItem('guestExpiry');
+                localStorage.removeItem('user');
+                localStorage.removeItem('vipUser');
+                localStorage.removeItem('vipExpiry');
+                localStorage.removeItem('vipCode');
+                
+                showNotification('تم تسجيل الخروج بنجاح', '#00b894');
+                setTimeout(() => {
+                    window.location.href = 'login.html';
+                }, 1000);
+                
+            } catch (error) {
+                console.error('Logout failed:', error);
+                window.location.href = 'login.html';
+            }
+        }
+
+        // === عرض معلومات الحساب ===
+        function showAccountInfo() {
+            if (currentUser) {
+                document.getElementById('accountUsername').textContent = currentUser.username;
+                document.getElementById('accountEmail').textContent = currentUser.email;
+                document.getElementById('accountType').textContent = currentUser.vip_status ? 'VIP' : 'مجاني';
+                document.getElementById('accountType').style.color = currentUser.vip_status ? 'var(--vip-gold)' : 'var(--primary)';
+                
+                if (currentUser.created_at) {
+                    const date = new Date(currentUser.created_at);
+                    document.getElementById('accountCreated').textContent = date.toLocaleDateString('ar-SA');
+                }
+                
+                openModal('accountModal');
+            } else {
+                // إذا كان زائر
+                document.getElementById('accountUsername').textContent = 'زائر';
+                document.getElementById('accountEmail').textContent = 'ليس لديك حساب';
+                document.getElementById('accountType').textContent = 'مجاني';
+                document.getElementById('accountCreated').textContent = 'غير متوفر';
+                openModal('accountModal');
+            }
+        }
+
+        window.onload = async () => {
+            // التحقق من المصادقة أولاً
+            const auth = await checkAuth();
+            if (!auth || !auth.authenticated) return;
+            
+            // عرض اسم المستخدم
+            if (auth.user) {
+                document.getElementById('userDisplay').textContent = auth.user.username;
+                
+                // التحقق من حالة VIP
+                if (auth.user.vip_status) {
+                    document.getElementById('vipBadge').style.display = 'inline-flex';
+                    document.querySelector('.vip-tab').style.display = 'block';
+                    document.querySelector('.header').classList.add('vip-active');
+                    
+                    // حساب وقت انتهاء VIP
+                    if (auth.user.vip_expiry) {
+                        const expiry = new Date(auth.user.vip_expiry);
+                        if (expiry < new Date()) {
+                            // VIP منتهي
+                            await updateVIPStatus(false);
+                        }
+                    }
+                }
+            } else if (auth.guest) {
+                document.getElementById('userDisplay').textContent = 'زائر';
+            }
+            
+            // إعداد الأزرار
+            setupUserButton();
             setupMusic();
             setupThemeButton();
             setupVIPButton();
-            setupUserButton();
-            setupVipSideButton();
-            checkVIPStatus();
+            setupTabs();
+            setupSearch();
+            
+            // عرض التطبيقات
+            renderApps(freeApps);
+            
+            // تحميل الثيم المحفوظ
             loadSavedTheme();
         };
 
-        // === إعداد زر VIP الجانبي ===
-        function setupVipSideButton() {
-            const vipSideBtn = document.getElementById('vipSideBtn');
-            
-            vipSideBtn.addEventListener('click', () => {
-                const isVIP = checkVIPStatus();
-                
-                if (isVIP) {
-                    // إذا كان VIP، يفتح تبويب VIP
-                    document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
-                    const vipTab = document.querySelector('.vip-tab');
-                    vipTab.classList.add('active');
-                    renderVipApps();
-                } else {
-                    // إذا لم يكن VIP، يظهر Alert احترافي
-                    showVipAlert();
-                }
-            });
+        // === إعداد زر المستخدم ===
+        function setupUserButton() {
+            document.getElementById('userBtn').addEventListener('click', showAccountInfo);
         }
 
-        // === إظهار Alert VIP احترافي ===
-        function showVipAlert() {
-            document.getElementById('vipAlertOverlay').classList.add('active');
-            document.getElementById('vipAlert').classList.add('active');
-        }
-
-        function hideVipAlert() {
-            document.getElementById('vipAlertOverlay').classList.remove('active');
-            document.getElementById('vipAlert').classList.remove('active');
-        }
-
-        // === إعداد زر الـ VIP ===
-        function setupVIPButton() {
-            const vipBtn = document.getElementById('vipBtn');
-            
-            vipBtn.addEventListener('click', () => {
-                const user = localStorage.getItem('user');
-                if (!user) {
-                    showNotification("⚠️ يجب تسجيل الدخول أولاً", "#ff6b6b");
-                    openModal('loginModal');
-                    return;
+        // === التحقق من حالة الـ VIP ===
+        function checkVIPStatus() {
+            if (currentUser && currentUser.vip_status) {
+                const vipExpiry = currentUser.vip_expiry;
+                if (vipExpiry) {
+                    const now = Date.now();
+                    if (now < new Date(vipExpiry).getTime()) {
+                        return true;
+                    }
                 }
-                
-                const currentVIP = localStorage.getItem('vipUser');
-                if (currentVIP === user) {
-                    showNotification("👑 أنت عضو VIP بالفعل!", "#FFD700");
-                    return;
-                }
-                
-                openModal('vipModal');
-                document.getElementById('vipCodeInput').focus();
-            });
+            }
+            return false;
         }
 
         // === تفعيل كود الـ VIP ===
         async function activateVIP() {
             const code = document.getElementById('vipCodeInput').value.trim();
-            const user = localStorage.getItem('user');
             const messageEl = document.getElementById('vipMessage');
             const activateBtn = document.getElementById('activateVipBtn');
             
-            if (!user) {
+            if (!currentUser) {
                 messageEl.innerHTML = "<span style='color:#ff6b6b'>⚠️ يجب تسجيل الدخول أولاً</span>";
                 return;
             }
@@ -1223,74 +1216,68 @@
             activateBtn.disabled = true;
             
             try {
-                const response = await fetch(`${NETLIFY_FUNCTIONS_URL}/check-vip`, {
+                const response = await fetch('/.netlify/functions/check-vip', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
                         code: code,
-                        userId: localStorage.getItem('userId') || generateUserId(),
-                        username: user
+                        userId: currentUser.id,
+                        username: currentUser.username
                     })
                 });
                 
                 const data = await response.json();
                 
                 if (data.success) {
-                    handleVIPSuccess(code, user, data, messageEl, activateBtn);
+                    // تحديث حالة المستخدم محلياً
+                    currentUser.vip_status = true;
+                    currentUser.vip_expiry = data.expiryDate;
+                    
+                    // تحديث الواجهة
+                    document.getElementById('vipBadge').style.display = 'inline-flex';
+                    document.querySelector('.vip-tab').style.display = 'block';
+                    document.querySelector('.header').classList.add('vip-active');
+                    
+                    messageEl.innerHTML = `<span style='color:#00ff88'>✅ ${data.message}</span>`;
+                    
+                    activateBtn.innerHTML = '<i class="fas fa-check" style="margin-left: 8px;"></i> تم التفعيل!';
+                    activateBtn.style.background = "linear-gradient(135deg, #00ff88, #00cc66)";
+                    
+                    showNotification("✨ " + data.message, "#FFD700");
+                    
+                    setTimeout(() => {
+                        closeModal('vipModal');
+                        
+                        setTimeout(() => {
+                            activateBtn.innerHTML = '<i class="fas fa-bolt" style="margin-left: 8px;"></i> تفعيل الآن';
+                            activateBtn.disabled = false;
+                            activateBtn.style.background = "linear-gradient(135deg, #FFD700, #FFA500)";
+                        }, 1000);
+                    }, 1500);
                 } else {
-                    handleVIPError(data.error || 'كود غير صحيح', messageEl, activateBtn);
+                    messageEl.innerHTML = `<span style='color:#ff6b6b'>❌ ${data.error}</span>`;
+                    activateBtn.innerHTML = '<i class="fas fa-bolt" style="margin-left: 8px;"></i> تفعيل الآن';
+                    activateBtn.disabled = false;
+                    
+                    document.getElementById('vipCodeInput').style.borderColor = "#ff6b6b";
+                    document.getElementById('vipCodeInput').style.boxShadow = "0 0 15px rgba(255,0,0,0.3)";
+                    
+                    setTimeout(() => {
+                        document.getElementById('vipCodeInput').style.borderColor = "var(--vip-gold)";
+                        document.getElementById('vipCodeInput').style.boxShadow = "";
+                    }, 1000);
                 }
                 
             } catch (error) {
                 console.log('الاتصال بالخادم فشل، جاري التحقق محلياً...');
-                checkVIPLocally(code, user, messageEl, activateBtn);
+                checkVIPLocally(code, messageEl, activateBtn);
             }
         }
 
-        // === معالجة نجاح تفعيل VIP ===
-        function handleVIPSuccess(code, user, data, messageEl, activateBtn) {
-            localStorage.setItem('vipUser', user);
-            localStorage.setItem('vipExpiry', data.expiryTimestamp || Date.now() + 30 * 24 * 60 * 60 * 1000);
-            localStorage.setItem('vipCode', code);
-            localStorage.setItem('vipData', JSON.stringify(data));
-            
-            messageEl.innerHTML = `<span style='color:#00ff88'>✅ ${data.message}</span>`;
-            
-            activateBtn.innerHTML = '<i class="fas fa-check" style="margin-left: 8px;"></i> تم التفعيل!';
-            activateBtn.style.background = "linear-gradient(135deg, #00ff88, #00cc66)";
-            
-            setTimeout(() => {
-                closeModal('vipModal');
-                checkVIPStatus();
-                showNotification("✨ " + data.message, "#FFD700");
-                
-                setTimeout(() => {
-                    activateBtn.innerHTML = '<i class="fas fa-bolt" style="margin-left: 8px;"></i> تفعيل الآن';
-                    activateBtn.disabled = false;
-                    activateBtn.style.background = "linear-gradient(135deg, #FFD700, #FFA500)";
-                }, 1000);
-            }, 1500);
-        }
-
-        // === معالجة خطأ تفعيل VIP ===
-        function handleVIPError(errorMsg, messageEl, activateBtn) {
-            messageEl.innerHTML = `<span style='color:#ff6b6b'>❌ ${errorMsg}</span>`;
-            activateBtn.innerHTML = '<i class="fas fa-bolt" style="margin-left: 8px;"></i> تفعيل الآن';
-            activateBtn.disabled = false;
-            
-            document.getElementById('vipCodeInput').style.borderColor = "#ff6b6b";
-            document.getElementById('vipCodeInput').style.boxShadow = "0 0 15px rgba(255,0,0,0.3)";
-            
-            setTimeout(() => {
-                document.getElementById('vipCodeInput').style.borderColor = "var(--vip-gold)";
-                document.getElementById('vipCodeInput').style.boxShadow = "";
-            }, 1000);
-        }
-
         // === التحقق المحلي من VIP ===
-        function checkVIPLocally(code, user, messageEl, activateBtn) {
+        function checkVIPLocally(code, messageEl, activateBtn) {
             const codeUpper = code.trim().toUpperCase();
             
             const validCode = codeUpper === "SABER55VIP" || 
@@ -1301,98 +1288,71 @@
                 const expiryDate = new Date();
                 expiryDate.setMonth(expiryDate.getMonth() + 1);
                 
-                const data = {
-                    success: true,
-                    message: 'تم تفعيل الـ VIP بنجاح!',
-                    expiryTimestamp: expiryDate.getTime()
-                };
+                // تحديث حالة المستخدم محلياً
+                currentUser.vip_status = true;
+                currentUser.vip_expiry = expiryDate.toISOString();
                 
-                handleVIPSuccess(code, user, data, messageEl, activateBtn);
-            } else {
-                handleVIPError('كود VIP غير صحيح', messageEl, activateBtn);
-            }
-        }
-
-        // === التحقق من حالة الـ VIP ===
-        function checkVIPStatus() {
-            const user = localStorage.getItem('user');
-            const vipUser = localStorage.getItem('vipUser');
-            const expiry = localStorage.getItem('vipExpiry');
-            const vipBadge = document.getElementById('vipBadge');
-            const header = document.querySelector('.header');
-            const vipTab = document.querySelector('.vip-tab');
-            const vipSideBtn = document.getElementById('vipSideBtn');
-            
-            if (user && vipUser === user && expiry) {
-                const now = Date.now();
-                if (now < parseInt(expiry)) {
-                    // VIP نشط
-                    vipBadge.style.display = 'inline-flex';
-                    header.classList.add('vip-active');
-                    if (vipTab) vipTab.style.display = 'block';
-                    if (vipSideBtn) {
-                        vipSideBtn.style.background = 'linear-gradient(135deg, var(--vip-gold), #FFA500)';
-                        vipSideBtn.title = 'التطبيقات الحصرية - أنت عضو VIP';
-                    }
-                    updateVIPRemainingTime(parseInt(expiry));
-                    return true;
-                } else {
-                    // انتهت صلاحية VIP
-                    clearVIPData();
-                    return false;
-                }
-            } else {
-                clearVIPData();
-                return false;
-            }
-        }
-
-        // === تحديث وقت بقاء الـ VIP ===
-        function updateVIPRemainingTime(expiryTimestamp) {
-            const now = Date.now();
-            const remainingTime = expiryTimestamp - now;
-            
-            if (remainingTime > 0) {
-                const days = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                // تحديث الواجهة
+                document.getElementById('vipBadge').style.display = 'inline-flex';
+                document.querySelector('.vip-tab').style.display = 'block';
+                document.querySelector('.header').classList.add('vip-active');
                 
-                const vipBtn = document.getElementById('vipBtn');
-                if (vipBtn) {
-                    vipBtn.title = `VIP نشط - متبقي: ${days} يوم و ${hours} ساعة`;
-                }
+                messageEl.innerHTML = "<span style='color:#00ff88'>✅ تم تفعيل الـ VIP بنجاح!</span>";
+                
+                activateBtn.innerHTML = '<i class="fas fa-check" style="margin-left: 8px;"></i> تم التفعيل!';
+                activateBtn.style.background = "linear-gradient(135deg, #00ff88, #00cc66)";
+                
+                showNotification("✨ تم تفعيل VIP بنجاح!", "#FFD700");
+                
+                setTimeout(() => {
+                    closeModal('vipModal');
+                    
+                    setTimeout(() => {
+                        activateBtn.innerHTML = '<i class="fas fa-bolt" style="margin-left: 8px;"></i> تفعيل الآن';
+                        activateBtn.disabled = false;
+                        activateBtn.style.background = "linear-gradient(135deg, #FFD700, #FFA500)";
+                    }, 1000);
+                }, 1500);
+            } else {
+                messageEl.innerHTML = `<span style='color:#ff6b6b'>❌ كود VIP غير صحيح</span>`;
+                activateBtn.innerHTML = '<i class="fas fa-bolt" style="margin-left: 8px;"></i> تفعيل الآن';
+                activateBtn.disabled = false;
+                
+                document.getElementById('vipCodeInput').style.borderColor = "#ff6b6b";
+                document.getElementById('vipCodeInput').style.boxShadow = "0 0 15px rgba(255,0,0,0.3)";
+                
+                setTimeout(() => {
+                    document.getElementById('vipCodeInput').style.borderColor = "var(--vip-gold)";
+                    document.getElementById('vipCodeInput').style.boxShadow = "";
+                }, 1000);
             }
         }
 
-        // === مسح بيانات VIP ===
-        function clearVIPData() {
-            localStorage.removeItem('vipUser');
-            localStorage.removeItem('vipExpiry');
-            localStorage.removeItem('vipCode');
-            localStorage.removeItem('vipData');
-            
-            document.getElementById('vipBadge').style.display = 'none';
-            document.querySelector('.header').classList.remove('vip-active');
-            
-            const vipTab = document.querySelector('.vip-tab');
-            if (vipTab) vipTab.style.display = 'none';
-            
+        // === إعداد زر الـ VIP ===
+        function setupVIPButton() {
             const vipBtn = document.getElementById('vipBtn');
-            if (vipBtn) {
-                vipBtn.title = 'تفعيل VIP';
-            }
             
-            const vipSideBtn = document.getElementById('vipSideBtn');
-            if (vipSideBtn) {
-                vipSideBtn.style.background = 'linear-gradient(135deg, #666, #444)';
-                vipSideBtn.title = 'التطبيقات الحصرية (تتطلب VIP)';
-            }
+            vipBtn.addEventListener('click', () => {
+                if (!currentUser) {
+                    showNotification("⚠️ يجب تسجيل الدخول أولاً", "#ff6b6b");
+                    showAccountInfo();
+                    return;
+                }
+                
+                if (currentUser.vip_status) {
+                    showNotification("👑 أنت عضو VIP بالفعل!", "#FFD700");
+                    return;
+                }
+                
+                openModal('vipModal');
+                document.getElementById('vipCodeInput').focus();
+            });
         }
 
-        // === إنشاء ID فريد للمستخدم ===
-        function generateUserId() {
-            const userId = 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-            localStorage.setItem('userId', userId);
-            return userId;
+        // === تحديث حالة VIP ===
+        async function updateVIPStatus(isActive) {
+            // يمكن إضافة كود لتحديث حالة VIP في قاعدة البيانات
+            console.log('VIP status:', isActive ? 'Active' : 'Expired');
         }
 
         // === إعداد الموسيقى ===
@@ -1474,14 +1434,14 @@
             document.getElementById('typing').style.display = 'block';
             
             try {
-                const response = await fetch(`${NETLIFY_FUNCTIONS_URL}/groq`, {
+                const response = await fetch('/.netlify/functions/groq', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
                         message: message,
-                        userId: localStorage.getItem('user') || 'guest',
+                        userId: currentUser ? currentUser.id : 'guest',
                         siteInfo: siteKnowledge
                     })
                 });
@@ -1543,7 +1503,7 @@
                 if (checkVIPStatus()) {
                     renderVipApps();
                 } else {
-                    showVipAlert();
+                    showNotification("🔒 تحتاج عضوية VIP للوصول", "#ff6b6b");
                     document.querySelector('.tab[data-cat="free"]').click();
                 }
             }
@@ -1575,19 +1535,9 @@
             const grid = document.getElementById('grid');
             grid.innerHTML = '';
             
-            if (vipApps.length === 0) {
-                grid.innerHTML = `
-                    <div style="grid-column: 1/-1; text-align: center; padding: 40px;">
-                        <i class="fas fa-crown" style="font-size: 3rem; color: var(--vip-gold); margin-bottom: 15px;"></i>
-                        <h3 style="color: var(--vip-gold); margin-bottom: 10px;">لا توجد تطبيقات VIP حالياً</h3>
-                        <p style="color: #aaa;">سيتم إضافة تطبيقات حصرية قريباً لأعضاء VIP</p>
-                    </div>
-                `;
-            } else {
-                vipApps.forEach(app => {
-                    createAppCard(app, true);
-                });
-            }
+            vipApps.forEach(app => {
+                createAppCard(app, true);
+            });
         }
 
         // === إنشاء بطاقة تطبيق ===
@@ -1674,7 +1624,7 @@
                 // التحقق من صلاحية VIP
                 if (!checkVIPStatus()) {
                     showNotification("🔒 هذا التطبيق يتطلب عضوية VIP", "#ff6b6b");
-                    showVipAlert();
+                    openModal('vipModal');
                     return;
                 }
             } else {
@@ -1758,7 +1708,6 @@
 
         // === إظهار نافذة VIP ===
         function showVipModal() {
-            hideVipAlert();
             openModal('vipModal');
         }
 
@@ -1813,51 +1762,6 @@
             setTimeout(() => {
                 notification.style.display = 'none';
             }, 3000);
-        }
-
-        // === إدارة المستخدم ===
-        function setupUserButton() {
-            document.getElementById('userBtn').addEventListener('click', () => {
-                const user = localStorage.getItem('user');
-                if (user) {
-                    openModal('logoutModal');
-                } else {
-                    openModal('loginModal');
-                }
-            });
-        }
-
-        function checkUser() {
-            const u = localStorage.getItem('user');
-            if(u) {
-                document.getElementById('userDisplay').innerText = u;
-                checkVIPStatus();
-                closeModal('loginModal');
-            } else {
-                openModal('loginModal');
-            }
-        }
-
-        function login() {
-            const name = document.getElementById('nameIn').value.trim();
-            if(name.length < 2) {
-                showNotification("⚠️ الاسم قصير جداً", "#ff6b6b");
-                return;
-            }
-            localStorage.setItem('user', name);
-            document.getElementById('userDisplay').innerText = name;
-            closeModal('loginModal');
-            checkVIPStatus();
-            showNotification(`🎉 أهلاً ${name}!`, getComputedStyle(document.documentElement).getPropertyValue('--primary'));
-        }
-
-        function logout() {
-            clearVIPData();
-            localStorage.removeItem('user');
-            localStorage.removeItem('userId');
-            document.getElementById('userDisplay').innerText = '';
-            closeModal('logoutModal');
-            openModal('loginModal');
         }
 
         // === إدارة الثيمات ===
@@ -1922,7 +1826,19 @@
         }
 
         // التحقق من حالة VIP كل دقيقة
-        setInterval(checkVIPStatus, 60000);
+        setInterval(() => {
+            if (currentUser && currentUser.vip_status && currentUser.vip_expiry) {
+                const expiry = new Date(currentUser.vip_expiry);
+                if (expiry < new Date()) {
+                    // VIP منتهي
+                    currentUser.vip_status = false;
+                    document.getElementById('vipBadge').style.display = 'none';
+                    document.querySelector('.vip-tab').style.display = 'none';
+                    document.querySelector('.header').classList.remove('vip-active');
+                    showNotification("⚠️ انتهت صلاحية عضوية VIP", "#ff6b6b");
+                }
+            }
+        }, 60000);
 
         // إضافة أنماط CSS للرسوم المتحركة
         const style = document.createElement('style');
@@ -1935,6 +1851,14 @@
                 from { transform: translateX(0); opacity: 1; }
                 to { transform: translateX(100%); opacity: 0; }
             }
+            
+            @keyframes vipPulse {
+                0% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.5); }
+                50% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.8); }
+                100% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.5); }
+            }
+            
+            @keyframes spin { 100% { transform: rotate(360deg); } }
         `;
         document.head.appendChild(style);
     </script>

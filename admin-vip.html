@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>إدارة VIP - SABER • 55</title>
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <style>
+        /* تصميم لوحة التحكم */
+    </style>
+</head>
+<body>
+    <div class="admin-panel">
+        <h1>👑 لوحة تحكم VIP</h1>
+        
+        <div class="stats">
+            <!-- إحصائيات -->
+        </div>
+        
+        <div class="actions">
+            <button onclick="generateVipCode()">🎫 توليد كود جديد</button>
+            <button onclick="viewAllUsers()">👥 عرض جميع المستخدمين</button>
+            <button onclick="viewVipUsers()">👑 عرض مستخدمي VIP</button>
+            <button onclick="viewVipCodes()">🔑 عرض أكواد VIP</button>
+        </div>
+        
+        <div id="results"></div>
+    </div>
+
+    <script>
+        const supabase = window.supabase.createClient('SUPABASE_URL', 'SUPABASE_SERVICE_KEY');
+        
+        async function generateVipCode() {
+            const { data, error } = await supabase.rpc('generate_vip_code', {
+                code_type: 'standard',
+                days_value: 30,
+                max_uses: 1,
+                created_by_user: 'admin'
+            });
+            
+            if (data) {
+                alert(`🎉 تم توليد كود جديد: ${data}`);
+            }
+        }
+        
+        async function viewVipUsers() {
+            const { data, error } = await supabase
+                .from('users')
+                .select('*')
+                .eq('vip_status', true)
+                .order('vip_expiry', { ascending: false });
+            
+            // عرض البيانات
+        }
+    </script>
+</body>
+</html>
