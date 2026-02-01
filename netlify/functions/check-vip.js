@@ -11,7 +11,7 @@ const vipCodesDatabase = {
         usedCount: 0,
         createdAt: "2024-01-01"
     },
-    "GOLDEN55": {
+    "20262026": {
         active: true,
         usedBy: null,
         expires: null,
