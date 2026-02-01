@@ -1,0 +1,15 @@
+{
+  "name": "saber-55-netlify",
+  "version": "1.0.0",
+  "description": "موقع SABER • 55 على Netlify",
+  "main": "index.html",
+  "scripts": {
+    "dev": "netlify dev",
+    "build": "echo 'No build needed for static site'"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

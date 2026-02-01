@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SABER • 55 - VIP EDITION</title>
+    <title>SABER • 55 - NETLIFY VIP</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap');
@@ -99,6 +99,7 @@
             border-color: var(--secondary);
             box-shadow: 0 0 15px rgba(0, 206, 209, 0.4);
         }
+        
         .btn-icon.playing i {
             animation: spin 3s linear infinite;
             color: var(--secondary);
@@ -184,6 +185,7 @@
             position: relative;
             margin-bottom: 25px;
         }
+        
         .search-box input {
             width: 100%;
             padding: 16px 50px 16px 20px;
@@ -196,9 +198,11 @@
             backdrop-filter: blur(10px);
             transition: all 0.5s ease;
         }
+        
         .search-box i {
             position: absolute;
-            left: 20px; top: 50%;
+            left: 20px;
+            top: 50%;
             transform: translateY(-50%);
             color: #888;
         }
@@ -211,6 +215,7 @@
             margin-bottom: 20px;
             scrollbar-width: none;
         }
+        
         .tabs::-webkit-scrollbar { display: none; }
         
         .tab {
@@ -224,6 +229,7 @@
             cursor: pointer;
             transition: 0.3s;
         }
+        
         .tab.active {
             background: var(--primary);
             color: white;
@@ -257,14 +263,24 @@
         }
 
         .card img {
-            width: 80px; height: 80px;
+            width: 80px;
+            height: 80px;
             border-radius: 18px;
             margin-bottom: 12px;
             object-fit: cover;
         }
 
-        .card-title { font-weight: 700; margin-bottom: 5px; font-size: 0.95rem; }
-        .card-desc { font-size: 0.75rem; color: #aaa; margin-bottom: 15px; }
+        .card-title {
+            font-weight: 700;
+            margin-bottom: 5px;
+            font-size: 0.95rem;
+        }
+        
+        .card-desc {
+            font-size: 0.75rem;
+            color: #aaa;
+            margin-bottom: 15px;
+        }
 
         .card-btn {
             margin-top: auto;
@@ -296,7 +312,10 @@
             padding: 20px;
         }
 
-        .modal-wrap.active { opacity: 1; visibility: visible; }
+        .modal-wrap.active {
+            opacity: 1;
+            visibility: visible;
+        }
 
         .modal-box {
             background: #111;
@@ -313,15 +332,21 @@
             overflow-y: auto;
         }
 
-        .modal-wrap.active .modal-box { transform: scale(1); }
+        .modal-wrap.active .modal-box {
+            transform: scale(1);
+        }
 
         .modal-close {
             position: absolute;
-            top: 15px; left: 15px;
-            width: 35px; height: 35px;
+            top: 15px;
+            left: 15px;
+            width: 35px;
+            height: 35px;
             background: rgba(255,255,255,0.1);
             border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
         }
 
@@ -396,8 +421,15 @@
             transition: 0.3s;
             animation: floatAI 3s ease-in-out infinite;
         }
-        .ai-float-btn:hover { transform: scale(1.1); }
-        @keyframes floatAI { 0%,100% {transform: translateY(0);} 50% {transform: translateY(-10px);} }
+        
+        .ai-float-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        @keyframes floatAI {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
         
         .ai-chat-window {
             position: fixed;
@@ -472,12 +504,14 @@
             line-height: 1.5;
             word-wrap: break-word;
         }
+        
         .msg-user {
             background: var(--primary);
             align-self: flex-end;
             color: white;
             border-bottom-left-radius: 0;
         }
+        
         .msg-ai {
             background: #2a2a2a;
             align-self: flex-start;
@@ -485,8 +519,13 @@
             border: 1px solid var(--border);
             border-bottom-right-radius: 0;
         }
+        
         .typing-indicator {
-            font-size: 0.7rem; color: var(--secondary); padding: 5px 15px; display: none; background: #0f0f0f;
+            font-size: 0.7rem;
+            color: var(--secondary);
+            padding: 5px 15px;
+            display: none;
+            background: #0f0f0f;
         }
 
         /* الإشعارات */
@@ -505,10 +544,42 @@
             display: none;
         }
 
+        /* تأثيرات إضافية */
+        .fire-effect {
+            animation: fire 1.5s infinite alternate;
+        }
+
+        @keyframes fire {
+            0% { transform: scale(1); filter: brightness(1); }
+            100% { transform: scale(1.1); filter: brightness(1.3); }
+        }
+
         @media (max-width: 400px) {
-            .grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-            .card img { width: 65px; height: 65px; }
-            .ai-chat-window { width: 90%; right: 5%; bottom: 95px; height: 60vh; }
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            
+            .card img {
+                width: 65px;
+                height: 65px;
+            }
+            
+            .ai-chat-window {
+                width: 90%;
+                right: 5%;
+                bottom: 95px;
+                height: 60vh;
+            }
+            
+            .vip-modal-content {
+                padding: 20px;
+            }
+            
+            .code-input {
+                font-size: 1.1rem;
+                padding: 15px;
+            }
         }
     </style>
 </head>
@@ -535,7 +606,7 @@
     <div class="container">
         <div class="welcome-text">
             <h2>أهلاً بك <span id="userDisplay" style="color: var(--primary);"></span> <span id="vipBadge" class="user-vip-badge" style="display: none;"><i class="fas fa-crown verified-badge"></i></span></h2>
-            <p style="color: #888; font-size: 0.9rem;">موقع SABER • 55 على Netlify</p>
+            <p style="color: #888; font-size: 0.9rem;">موقع SABER • 55 على Netlify مع نظام VIP متكامل</p>
         </div>
 
         <div class="search-box">
@@ -601,19 +672,24 @@
             
             <div class="vip-modal-content">
                 <div class="vip-icon-main">
-                    <i class="fas fa-fire"></i>
+                    <i class="fas fa-fire fire-effect"></i>
                 </div>
                 
-                <h3 style="color: #FFD700; margin-bottom: 10px; font-size: 1.8rem;">تفعيل VIP</h3>
+                <h3 style="color: #FFD700; margin-bottom: 10px; font-size: 1.8rem;">تفعيل <span style="text-shadow: 0 0 10px rgba(255,215,0,0.5);">VIP</span></h3>
                 <p style="color: #aaa; margin-bottom: 25px; font-size: 0.9rem;">أدخل كود التفعيل الخاص بك</p>
                 
-                <input type="text" id="vipCodeInput" class="code-input" placeholder="أدخل الكود هنا" maxlength="20">
+                <input type="text" id="vipCodeInput" class="code-input" placeholder="أدخل الكود هنا" maxlength="20" autocomplete="off">
+                
+                <div style="margin: 15px 0; padding: 10px; background: rgba(255,215,0,0.1); border-radius: 10px; border: 1px solid rgba(255,215,0,0.2);">
+                    <p style="color: #FFD700; font-size: 0.8rem; margin-bottom: 5px;"><i class="fas fa-key"></i> أكواد تجريبية:</p>
+                    <p style="color: #aaa; font-size: 0.7rem; font-family: monospace;">SABER55VIP • GOLDEN55 • VIP202455</p>
+                </div>
                 
                 <button class="main-btn vip" onclick="activateVIP()" id="activateVipBtn">
                     <i class="fas fa-bolt" style="margin-left: 8px;"></i> تفعيل الآن
                 </button>
                 
-                <p id="vipMessage" style="margin-top: 15px; font-size: 0.9rem; min-height: 25px;"></p>
+                <p id="vipMessage" style="margin-top: 15px; font-size: 0.9rem; min-height: 25px; font-weight: bold;"></p>
             </div>
         </div>
     </div>
@@ -664,6 +740,38 @@
                 img: "https://via.placeholder.com/80/333/fff?text=GEMINI",
                 cat: "tools",
                 link: "https://www.mediafire.com/file/4ymmqp7fnj1h9m4/HACK+GEMENI+V1.txt/file"
+            },
+            {
+                id: 3,
+                title: "CLAUDE AI",
+                desc: "نموذج ذكاء اصطناعي متقدم من Anthropic.",
+                img: "https://via.placeholder.com/80/333/fff?text=CLAUDE",
+                cat: "tools",
+                link: "#"
+            },
+            {
+                id: 4,
+                title: "CHATGPT 4",
+                desc: "أقوى نموذج لغة من OpenAI.",
+                img: "https://via.placeholder.com/80/333/fff?text=GPT4",
+                cat: "tools",
+                link: "#"
+            },
+            {
+                id: 5,
+                title: "MIDJOURNEY",
+                desc: "إنشاء صور بالذكاء الاصطناعي.",
+                img: "https://via.placeholder.com/80/333/fff?text=MIDJOURNEY",
+                cat: "tools",
+                link: "#"
+            },
+            {
+                id: 6,
+                title: "STABLE DIFFUSION",
+                desc: "برنامج مفتوح المصدر لإنشاء الصور.",
+                img: "https://via.placeholder.com/80/333/fff?text=SD",
+                cat: "tools",
+                link: "#"
             }
         ];
 
@@ -671,7 +779,7 @@
         let currentThemeIndex = 0;
         let musicEnabled = false;
         
-        // URL لدالة Netlify Functions
+        // URL لدوال Netlify Functions
         const NETLIFY_FUNCTIONS_URL = '/.netlify/functions';
 
         window.onload = () => {
@@ -680,11 +788,19 @@
             setupTabs();
             setupSearch();
             setupMusic();
+            setupThemeButton();
             setupVIPButton();
+            setupUserButton();
             checkVIPStatus();
-            
-            // تحميل الثيم المحفوظ
             loadSavedTheme();
+            
+            // إظهار رسالة ترحيبية
+            setTimeout(() => {
+                if (!localStorage.getItem('welcomeShown')) {
+                    showNotification("🚀 مرحباً بك في SABER • 55 على Netlify!", "#8A2BE2");
+                    localStorage.setItem('welcomeShown', 'true');
+                }
+            }, 1000);
         };
 
         // === إعداد زر الـ VIP ===
@@ -732,29 +848,84 @@
             activateBtn.disabled = true;
             
             try {
-                // هنا يمكنك إضافة اتصال بالخادم للتحقق من الكود
-                // في هذه المرحلة، سنفترض أن الكود صحيح لأغراض العرض
+                // استخدام دالة Netlify Functions للتحقق من VIP
+                const response = await fetch(`${NETLIFY_FUNCTIONS_URL}/check-vip`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        code: code,
+                        userId: localStorage.getItem('userId') || generateUserId(),
+                        username: user
+                    })
+                });
                 
+                const data = await response.json();
+                
+                if (data.success) {
+                    // تفعيل الـ VIP للمستخدم
+                    localStorage.setItem('vipUser', user);
+                    localStorage.setItem('vipExpiry', data.expiryTimestamp || Date.now() + 30 * 24 * 60 * 60 * 1000);
+                    localStorage.setItem('vipCode', code);
+                    localStorage.setItem('vipData', JSON.stringify(data));
+                    
+                    messageEl.innerHTML = `<span style='color:#00ff88'>✅ ${data.message}</span>`;
+                    
+                    // تأثير نجاح
+                    activateBtn.innerHTML = '<i class="fas fa-check" style="margin-left: 8px;"></i> تم التفعيل!';
+                    activateBtn.style.background = "linear-gradient(135deg, #00ff88, #00cc66)";
+                    
+                    setTimeout(() => {
+                        closeModal('vipModal');
+                        checkVIPStatus();
+                        showNotification("✨ " + data.message, "#FFD700");
+                        
+                        // إعادة تعيين الزر
+                        setTimeout(() => {
+                            activateBtn.innerHTML = '<i class="fas fa-bolt" style="margin-left: 8px;"></i> تفعيل الآن';
+                            activateBtn.disabled = false;
+                            activateBtn.style.background = "linear-gradient(135deg, #FFD700, #FFA500)";
+                        }, 1000);
+                    }, 1500);
+                    
+                } else {
+                    messageEl.innerHTML = `<span style='color:#ff6b6b'>❌ ${data.error || 'كود غير صحيح'}</span>`;
+                    activateBtn.innerHTML = '<i class="fas fa-bolt" style="margin-left: 8px;"></i> تفعيل الآن';
+                    activateBtn.disabled = false;
+                }
+                
+            } catch (error) {
+                // إذا فشل الاتصال بالخادم، استخدم التحقق المحلي
+                console.log('الاتصال بالخادم فشل، جاري التحقق محلياً...');
+                checkVIPLocally(code, user, messageEl, activateBtn);
+            }
+        }
+
+        // === التحقق المحلي من VIP (بديل) ===
+        function checkVIPLocally(code, user, messageEl, activateBtn) {
+            const codeUpper = code.trim().toUpperCase();
+            const validCodes = ['SABER55VIP', 'GOLDEN55', 'VIP202455', 'TESTCODE55'];
+            
+            if (validCodes.includes(codeUpper)) {
                 // تفعيل الـ VIP للمستخدم
                 const expiryDate = new Date();
-                expiryDate.setMonth(expiryDate.getMonth() + 1); // شهر واحد
+                expiryDate.setMonth(expiryDate.getMonth() + 1);
                 
                 localStorage.setItem('vipUser', user);
                 localStorage.setItem('vipExpiry', expiryDate.getTime());
-                localStorage.setItem('vipCode', code);
+                localStorage.setItem('vipCode', codeUpper);
                 
                 messageEl.innerHTML = "<span style='color:#00ff88'>✅ تم تفعيل الـ VIP بنجاح!</span>";
                 
-                // تأثير نجاح
                 activateBtn.innerHTML = '<i class="fas fa-check" style="margin-left: 8px;"></i> تم التفعيل!';
                 activateBtn.style.background = "linear-gradient(135deg, #00ff88, #00cc66)";
                 
                 setTimeout(() => {
                     closeModal('vipModal');
                     checkVIPStatus();
-                    showNotification("✨ مبروك! أنت الآن عضو VIP", "#FFD700");
+                    showNotification("✨ تم تفعيل الـ VIP بنجاح!", "#FFD700");
                     
-                    // إعادة تعيين الزر
                     setTimeout(() => {
                         activateBtn.innerHTML = '<i class="fas fa-bolt" style="margin-left: 8px;"></i> تفعيل الآن';
                         activateBtn.disabled = false;
@@ -762,8 +933,8 @@
                     }, 1000);
                 }, 1500);
                 
-            } catch (error) {
-                messageEl.innerHTML = "<span style='color:#ff6b6b'>❌ خطأ في الاتصال بالخادم</span>";
+            } else {
+                messageEl.innerHTML = "<span style='color:#ff6b6b'>❌ كود VIP غير صحيح</span>";
                 activateBtn.innerHTML = '<i class="fas fa-bolt" style="margin-left: 8px;"></i> تفعيل الآن';
                 activateBtn.disabled = false;
             }
@@ -783,21 +954,60 @@
                     // الـ VIP لا يزال نشطاً
                     vipBadge.style.display = 'inline-flex';
                     header.classList.add('vip-active');
+                    
+                    // تحديث مدة البقاء
+                    updateVIPRemainingTime(parseInt(expiry));
                     return true;
                 } else {
                     // انتهت صلاحية الـ VIP
-                    localStorage.removeItem('vipUser');
-                    localStorage.removeItem('vipExpiry');
-                    localStorage.removeItem('vipCode');
-                    vipBadge.style.display = 'none';
-                    header.classList.remove('vip-active');
+                    clearVIPData();
                     return false;
                 }
             } else {
-                vipBadge.style.display = 'none';
-                header.classList.remove('vip-active');
+                clearVIPData();
                 return false;
             }
+        }
+
+        // === تحديث وقت بقاء الـ VIP ===
+        function updateVIPRemainingTime(expiryTimestamp) {
+            const now = Date.now();
+            const remainingTime = expiryTimestamp - now;
+            
+            if (remainingTime > 0) {
+                const days = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                
+                // تحديث تلميح زر VIP
+                const vipBtn = document.getElementById('vipBtn');
+                if (vipBtn) {
+                    vipBtn.title = `VIP نشط - متبقي: ${days} يوم و ${hours} ساعة`;
+                }
+            }
+        }
+
+        // === مسح بيانات VIP ===
+        function clearVIPData() {
+            localStorage.removeItem('vipUser');
+            localStorage.removeItem('vipExpiry');
+            localStorage.removeItem('vipCode');
+            localStorage.removeItem('vipData');
+            
+            document.getElementById('vipBadge').style.display = 'none';
+            document.querySelector('.header').classList.remove('vip-active');
+            
+            // إعادة تعيين تلميح زر VIP
+            const vipBtn = document.getElementById('vipBtn');
+            if (vipBtn) {
+                vipBtn.title = 'تفعيل VIP';
+            }
+        }
+
+        // === دالة مساعدة لإنشاء ID فريد ===
+        function generateUserId() {
+            const userId = 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+            localStorage.setItem('userId', userId);
+            return userId;
         }
 
         // === إصلاح مشكلة الصوت ===
@@ -927,25 +1137,29 @@
                 return "مرحباً! أنا مساعد موقع SABER • 55. كيف يمكنني مساعدتك في موقعنا؟";
             } else if (lowerMessage.includes('ماذا') && lowerMessage.includes('يوجد') || 
                       lowerMessage.includes('تطبيق') || lowerMessage.includes('برنامج')) {
-                return `في موقع SABER • 55 لدينا:\n
+                return `في موقع SABER • 55 لدينا مجموعة من أدوات الذكاء الاصطناعي:\n
 1. ${apps[0].title}: ${apps[0].desc}\n
 2. ${apps[1].title}: ${apps[1].desc}\n
+3. ${apps[2].title}: ${apps[2].desc}\n
+4. ${apps[3].title}: ${apps[3].desc}\n
+5. ${apps[4].title}: ${apps[4].desc}\n
+6. ${apps[5].title}: ${apps[5].desc}\n
 لتحميل أي تطبيق، اضغط عليه ثم اختر "تحميل".`;
-            } else if (lowerMessage.includes('deepseek') || lowerMessage.includes('ديب سيك')) {
-                return `${apps[0].title}: ${apps[0].desc}\nللتحميل: اضغط على التطبيق ثم "تحميل".`;
-            } else if (lowerMessage.includes('gemini') || lowerMessage.includes('جيمني')) {
-                return `${apps[1].title}: ${apps[1].desc}\nللتحميل: اضغط على التطبيق ثم "تحميل".`;
-            } else if (lowerMessage.includes('vip') || lowerMessage.includes('تفعيل') || lowerMessage.includes('نار')) {
+            } else if (lowerMessage.includes('vip') || lowerMessage.includes('في أي بي') || lowerMessage.includes('تفعيل') || lowerMessage.includes('نار')) {
                 return `🔥 خاصية VIP في SABER • 55:\n
 1. للحصول على VIP: اضغط على زر النار 🔥\n
 2. أدخل كود التفعيل الخاص بك\n
-3. تمتع بمزايا VIP الحصرية`;
+3. تمتع بمزايا VIP الحصرية:\n   - تحميل فائق السرعة\n   - علامة VIP ذهبية\n   - محتوى حصري\n   - دعم فوري\n
+4. الكود صالح لمدة شهر واحد\n
+5. أكواد تجريبية: SABER55VIP, GOLDEN55, VIP202455`;
             } else if (lowerMessage.includes('تحميل') || lowerMessage.includes('نزل')) {
-                return "للتحميل:\n1. اضغط على التطبيق المطلوب\n2. اضغط على زر 'تحميل'";
-            } else if (lowerMessage.includes('موقع') || lowerMessage.includes('saber')) {
-                return `موقع SABER • 55:\n- موقع لتقديم أقوى الأدوات الذكية\n- يستخدم Netlify Functions لحماية المفتاح\n- خاصية VIP حصرية`;
+                return "للتحميل:\n1. اضغط على التطبيق المطلوب\n2. اضغط على زر 'تحميل'\n3. سيتم فتح رابط التحميل في نافذة جديدة";
+            } else if (lowerMessage.includes('موقع') || lowerMessage.includes('saber') || lowerMessage.includes('سابر')) {
+                return `موقع SABER • 55:\n- موقع متكامل لتقديم أقوى أدوات الذكاء الاصطناعي\n- يستخدم Netlify Functions لحماية البيانات\n- نظام VIP حصري مع أكواد تفعيل\n- واجهة عربية جميلة وسهلة\n- دعم متكامل للذكاء الاصطناعي\n- استضافة مجانية على Netlify`;
+            } else if (lowerMessage.includes('netlify') || lowerMessage.includes('نتليفاي')) {
+                return "Netlify هي منصة استضافة مجانية نستخدمها في SABER • 55:\n- استضافة سريعة مع CDN\n- دعم Netlify Functions\n- SSL مجاني\n- نشر مستمر من GitHub\n- مثالي للمواقع الثابتة";
             } else {
-                return "أنا مساعد موقع SABER • 55. يمكنني الإجابة على:\n- التطبيقات المتاحة\n- كيفية التحميل\n- تفعيل الـ VIP\n- معلومات عن الموقع";
+                return "أنا مساعد موقع SABER • 55. يمكنني الإجابة على:\n- التطبيقات والأدوات المتاحة\n- كيفية التحميل\n- تفعيل الـ VIP (اضغط على زر النار 🔥)\n- معلومات عن الموقع والتقنيات المستخدمة\n- أي استفسارات أخرى";
             }
         }
 
@@ -1024,13 +1238,10 @@
         }
 
         function logout() {
+            clearVIPData();
             localStorage.removeItem('user');
-            localStorage.removeItem('vipUser');
-            localStorage.removeItem('vipExpiry');
-            localStorage.removeItem('vipCode');
+            localStorage.removeItem('userId');
             document.getElementById('userDisplay').innerText = '';
-            document.getElementById('vipBadge').style.display = 'none';
-            document.querySelector('.header').classList.remove('vip-active');
             closeModal('logoutModal');
             openModal('loginModal');
         }
@@ -1132,8 +1343,28 @@
                 secondary: '#FFA726',
                 bgDark: '#0A0A0A',
                 vipColor: '#FF9800'
+            },
+            {
+                name: 'أخضر-فيروزي',
+                primary: '#00B894',
+                secondary: '#00CEC9',
+                bgDark: '#051E14',
+                vipColor: '#FFEB3B'
+            },
+            {
+                name: 'ذهبي-أرجواني',
+                primary: '#9C27B0',
+                secondary: '#FFD700',
+                bgDark: '#140A1E',
+                vipColor: '#FFD700'
             }
         ];
+
+        function setupThemeButton() {
+            document.getElementById('themeBtn').addEventListener('click', () => {
+                changeTheme();
+            });
+        }
 
         function loadSavedTheme() {
             const savedTheme = localStorage.getItem('saberTheme');
@@ -1144,11 +1375,6 @@
                     applyTheme(themes[themeIndex]);
                 }
             }
-            
-            // إعداد زر تغيير الثيم
-            document.getElementById('themeBtn').addEventListener('click', () => {
-                changeTheme();
-            });
         }
         
         function changeTheme() {
@@ -1168,7 +1394,21 @@
             document.documentElement.style.setProperty('--secondary', theme.secondary);
             document.documentElement.style.setProperty('--bg-dark', theme.bgDark);
             document.documentElement.style.setProperty('--vip-gold', theme.vipColor);
+            
+            // تحديث لون أيقونة VIP
+            const vipIcon = document.querySelector('.vip-btn i');
+            if (vipIcon) {
+                vipIcon.style.color = theme.vipColor;
+            }
+            
+            const vipBadge = document.querySelector('.verified-badge');
+            if (vipBadge) {
+                vipBadge.style.color = theme.vipColor;
+            }
         }
+
+        // التحقق من حالة VIP كل دقيقة
+        setInterval(checkVIPStatus, 60000);
 
         // إضافة أنماط CSS للرسوم المتحركة
         const style = document.createElement('style');
