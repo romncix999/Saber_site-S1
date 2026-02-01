@@ -1,83 +1,23 @@
-// ملف: netlify/functions/check-vip.js
-// دالة للتحقق من صحة أكواد VIP
-
-// قاعدة بيانات افتراضية للأكواد (في الواقع الحقيقي، استخدم قاعدة بيانات)
-const vipCodesDatabase = {
-    "SABER55VIP": {
-        active: true,
-        usedBy: null,
-        expires: null,
-        maxUses: 1,
-        usedCount: 0,
-        createdAt: "2024-01-01"
-    },
-    "20262026": {
-        active: true,
-        usedBy: null,
-        expires: null,
-        maxUses: 1,
-        usedCount: 0,
-        createdAt: "2024-01-01"
-    },
-    "VIP202455": {
-        active: true,
-        usedBy: null,
-        expires: null,
-        maxUses: 1,
-        usedCount: 0,
-        createdAt: "2024-01-01"
-    },
-    "TESTCODE55": {
-        active: true,
-        usedBy: null,
-        expires: null,
-        maxUses: 1,
-        usedCount: 0,
-        createdAt: "2024-01-01"
-    }
-};
+const { createClient } = require('@supabase/supabase-js');
 
 exports.handler = async function(event, context) {
-    // التحقق من أن الطريقة POST
+    const supabaseUrl = process.env.SUPABASE_URL;
+    const supabaseServiceKey = process.env.SUPABASE_SERVICE_KEY;
+    const supabase = createClient(supabaseUrl, supabaseServiceKey);
+
     if (event.httpMethod !== 'POST') {
         return {
             statusCode: 405,
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'POST, OPTIONS',
-                'Access-Control-Allow-Headers': 'Content-Type'
-            },
-            body: JSON.stringify({ 
-                error: 'الطريقة غير مسموحة',
-                allowedMethods: ['POST']
-            })
-        };
-    }
-
-    // معالجة طلبات OPTIONS لـ CORS
-    if (event.httpMethod === 'OPTIONS') {
-        return {
-            statusCode: 200,
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'POST, OPTIONS',
-                'Access-Control-Allow-Headers': 'Content-Type'
-            }
+            body: JSON.stringify({ error: 'Method not allowed' })
         };
     }
 
     try {
-        // استخراج البيانات من الجسم
-        const { code, userId, username } = JSON.parse(event.body || '{}');
+        const { code, userId } = JSON.parse(event.body);
         
         if (!code) {
             return {
                 statusCode: 400,
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
-                },
                 body: JSON.stringify({ 
                     success: false,
                     error: 'كود VIP مطلوب' 
@@ -85,125 +25,53 @@ exports.handler = async function(event, context) {
             };
         }
 
-        const codeUpper = code.trim().toUpperCase();
-        
-        // التحقق من وجود الكود في قاعدة البيانات
-        const vipCode = vipCodesDatabase[codeUpper];
-        
-        if (!vipCode) {
+        // استخدام الدالة المخزنة في PostgreSQL
+        const { data, error } = await supabase.rpc('activate_vip_code', {
+            input_code: code,
+            user_uuid: userId,
+            user_ip: event.headers['x-forwarded-for'] || 'unknown'
+        });
+
+        if (error) {
+            console.error('Supabase RPC error:', error);
             return {
-                statusCode: 404,
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
-                },
+                statusCode: 500,
                 body: JSON.stringify({ 
                     success: false,
-                    error: 'كود VIP غير صحيح' 
+                    error: 'خطأ في الخادم' 
                 })
             };
         }
 
-        // التحقق من حالة الكود
-        if (!vipCode.active) {
+        const result = data;
+        
+        if (result.success) {
             return {
-                statusCode: 400,
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
-                },
-                body: JSON.stringify({ 
-                    success: false,
-                    error: 'كود VIP غير مفعل' 
+                statusCode: 200,
+                body: JSON.stringify({
+                    success: true,
+                    message: result.message,
+                    expiryDate: result.expiry_date,
+                    expiryTimestamp: new Date(result.expiry_date).getTime()
                 })
             };
-        }
-
-        // التحقق من عدد مرات الاستخدام
-        if (vipCode.usedCount >= vipCode.maxUses) {
+        } else {
             return {
                 statusCode: 400,
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
-                },
                 body: JSON.stringify({ 
                     success: false,
-                    error: 'كود VIP مستخدم بالكامل' 
+                    error: result.message 
                 })
             };
         }
-
-        // التحقق إذا كان الكود مستخدم من قبل مستخدم آخر
-        if (vipCode.usedBy && vipCode.usedBy !== userId) {
-            return {
-                statusCode: 400,
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
-                },
-                body: JSON.stringify({ 
-                    success: false,
-                    error: 'كود VIP مستخدم من قبل شخص آخر' 
-                })
-            };
-        }
-
-        // حساب تاريخ الانتهاء (شهر واحد من الآن)
-        const expiryDate = new Date();
-        expiryDate.setMonth(expiryDate.getMonth() + 1);
-        
-        // تحديث قاعدة البيانات (في الواقع الحقيقي، احفظ في قاعدة بيانات)
-        vipCode.usedBy = userId || username || 'مستخدم جديد';
-        vipCode.usedCount += 1;
-        vipCode.activatedAt = new Date().toISOString();
-        vipCode.expires = expiryDate.getTime();
-        
-        // تسجيل النشاط
-        console.log(`تم تفعيل VIP: ${codeUpper} للمستخدم: ${userId}`);
-        
-        // إعداد بيانات الرد
-        const responseData = {
-            success: true,
-            message: 'تم تفعيل الـ VIP بنجاح!',
-            code: codeUpper,
-            userId: userId,
-            username: username || 'مستخدم',
-            expiryDate: expiryDate.toISOString(),
-            expiryTimestamp: vipCode.expires,
-            daysValid: 30,
-            features: [
-                'علامة VIP ذهبية',
-                'تحميل فائق السرعة',
-                'محتوى حصري',
-                'دعم فوري',
-                'ميزات جديدة قريباً'
-            ]
-        };
-
-        return {
-            statusCode: 200,
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Cache-Control': 'no-cache, no-store, must-revalidate'
-            },
-            body: JSON.stringify(responseData)
-        };
 
     } catch (error) {
-        console.error('خطأ في دالة check-vip:', error);
-        
+        console.error('Function error:', error);
         return {
             statusCode: 500,
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
-            },
-            body: JSON.stringify({
+            body: JSON.stringify({ 
                 success: false,
-                error: 'حدث خطأ في الخادم',
-                details: process.env.NODE_ENV === 'development' ? error.message : undefined
+                error: 'حدث خطأ في الخادم' 
             })
         };
     }
