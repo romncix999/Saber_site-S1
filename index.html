@@ -141,6 +141,37 @@
             box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
         }
 
+        /* زر VIP الجانبي */
+        .vip-side-btn {
+            position: fixed;
+            bottom: 160px;
+            left: 25px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--vip-gold), #FFA500);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
+            cursor: pointer;
+            z-index: 2000;
+            transition: 0.3s;
+            animation: vipFloat 3s ease-in-out infinite;
+            color: #000;
+            font-weight: bold;
+        }
+        
+        .vip-side-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        @keyframes vipFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
         @keyframes vipPulse {
             0% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.5); }
             50% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.8); }
@@ -238,6 +269,20 @@
             box-shadow: 0 5px 15px var(--primary-glow);
         }
 
+        /* تبويب VIP */
+        .tab.vip-tab {
+            border: 1px solid var(--vip-gold);
+            color: var(--vip-gold);
+            background: linear-gradient(135deg, rgba(255,215,0,0.1), rgba(255,165,0,0.05));
+        }
+        
+        .tab.vip-tab.active {
+            background: var(--vip-gold);
+            color: #000;
+            font-weight: bold;
+            box-shadow: 0 5px 15px var(--vip-glow);
+        }
+
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
@@ -302,6 +347,32 @@
             transition: all 0.5s ease;
         }
 
+        .vip-card {
+            border: 2px solid var(--vip-gold);
+            background: linear-gradient(135deg, rgba(255,215,0,0.1), rgba(255,165,0,0.05));
+            position: relative;
+        }
+
+        .vip-card::before {
+            content: 'VIP';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: var(--vip-gold);
+            color: #000;
+            font-size: 0.7rem;
+            font-weight: bold;
+            padding: 3px 8px;
+            border-radius: 20px;
+            z-index: 2;
+        }
+
+        .vip-card .card-btn {
+            background: linear-gradient(135deg, rgba(255,215,0,0.2), rgba(255,165,0,0.1));
+            border-color: var(--vip-gold);
+            color: var(--vip-gold);
+        }
+
         /* === النوافذ المنبثقة === */
         .modal-wrap {
             position: fixed;
@@ -354,6 +425,52 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
+            z-index: 10;
+        }
+
+        /* نافذة التفاصيل */
+        .app-info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .app-info-item {
+            background: rgba(255,255,255,0.05);
+            padding: 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+        }
+        
+        .app-info-label {
+            color: var(--secondary);
+            font-size: 0.7rem;
+            margin-bottom: 3px;
+        }
+
+        .progress-area {
+            margin-top: 20px;
+            background: rgba(255,255,255,0.05);
+            padding: 15px;
+            border-radius: 15px;
+            display: none;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: #333;
+            border-radius: 3px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: var(--secondary);
+            transition: width 0.1s linear;
         }
 
         /* نافذة VIP */
@@ -550,6 +667,48 @@
             display: none;
         }
 
+        /* Alert احترافي */
+        .vip-alert {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            background: linear-gradient(135deg, #111, #222);
+            border: 2px solid var(--vip-gold);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            z-index: 3000;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+        }
+
+        .vip-alert.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .vip-alert-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+            z-index: 2999;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s;
+        }
+
+        .vip-alert-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
         /* فوتر */
         .footer {
             position: fixed;
@@ -633,6 +792,15 @@
             
             .ai-float-btn {
                 bottom: 90px;
+                right: 15px;
+            }
+            
+            .vip-side-btn {
+                bottom: 160px;
+                left: 15px;
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
             }
             
             .vip-modal-content {
@@ -687,11 +855,41 @@
 
         <div class="tabs">
             <div class="tab active" data-cat="all">الكل</div>
-            <div class="tab" data-cat="tools">أدوات</div>
-            <div class="tab" data-cat="ai">ذكاء اصطناعي</div>
+            <div class="tab" data-cat="free">مجاني</div>
+            <div class="tab vip-tab" data-cat="vip" style="display: none;">VIP</div>
         </div>
 
         <div class="grid" id="grid"></div>
+    </div>
+
+    <!-- زر VIP الجانبي -->
+    <div class="vip-side-btn" id="vipSideBtn" title="التطبيقات الحصرية">
+        VIP
+    </div>
+
+    <!-- Alert احترافي لطلب VIP -->
+    <div class="vip-alert-overlay" id="vipAlertOverlay"></div>
+    <div class="vip-alert" id="vipAlert">
+        <i class="fas fa-crown" style="font-size: 3rem; color: #FFD700; margin-bottom: 15px;"></i>
+        <h3 style="color: #FFD700; margin-bottom: 10px;">التطبيقات الحصرية 🔒</h3>
+        <p style="color: #aaa; margin-bottom: 15px;">هذه التطبيقات متاحة فقط لأعضاء VIP</p>
+        <div style="background: rgba(255,215,0,0.1); padding: 15px; border-radius: 10px; margin-bottom: 20px;">
+            <p style="color: #FFA500; font-size: 0.9rem;">
+                <i class="fas fa-star"></i> انضم إلى النخبة واحصل على:
+            </p>
+            <p style="color: #ccc; font-size: 0.8rem; margin-top: 8px;">
+                • تطبيقات حصرية<br>
+                • تحميل فائق السرعة<br>
+                • دعم فوري<br>
+                • تحديثات أولوية
+            </p>
+        </div>
+        <button class="main-btn vip" onclick="showVipModal()" style="margin-bottom: 10px;">
+            <i class="fas fa-bolt"></i> اشترك الآن
+        </button>
+        <button class="main-btn" onclick="hideVipAlert()" style="background: #333;">
+            لاحقاً
+        </button>
     </div>
 
     <!-- نافذة التفاصيل -->
@@ -702,11 +900,49 @@
             <img src="" id="mImg" style="width: 100px; height: 100px; border-radius: 20px; margin-bottom: 15px;">
             <h2 id="mTitle" style="margin-bottom: 5px;"></h2>
             
+            <div class="app-info-grid">
+                <div class="app-info-item">
+                    <div class="app-info-label">الحجم</div>
+                    <div id="mSize"></div>
+                </div>
+                <div class="app-info-item">
+                    <div class="app-info-label">الإصدار</div>
+                    <div id="mVer"></div>
+                </div>
+                <div class="app-info-item">
+                    <div class="app-info-label">النوع</div>
+                    <div id="mCat"></div>
+                </div>
+                <div class="app-info-item">
+                    <div class="app-info-label">الحالة</div>
+                    <div id="mStatus"></div>
+                </div>
+            </div>
+
             <p id="mDesc" style="color: #aaa; margin-bottom: 20px; font-size: 0.9rem; text-align: right; line-height: 1.6;"></p>
             
-            <button class="main-btn" onclick="downloadApp()">
-                <i class="fas fa-download"></i> تحميل الآن
+            <button class="main-btn" id="startBtn" onclick="startDownload()">
+                <i class="fas fa-download"></i> بدء التحميل
             </button>
+            
+            <div class="progress-area" id="timerArea">
+                <p style="font-size: 0.9rem;">جاري التحقق من الصلاحية...</p>
+                <h2 id="timerCount" style="color: var(--secondary); margin: 5px 0;">10</h2>
+                <div class="progress-bar"><div class="progress-fill" id="fill"></div></div>
+            </div>
+
+            <button class="main-btn" id="finalBtn" style="display: none; background: #00b894;" onclick="goLink()">
+                <i class="fas fa-external-link-alt"></i> فتح رابط التحميل
+            </button>
+            
+            <div id="vipRequired" style="display: none; margin-top: 15px; padding: 15px; background: rgba(255,0,0,0.1); border-radius: 10px; border: 1px solid rgba(255,0,0,0.3);">
+                <p style="color: #ff6b6b; font-size: 0.9rem;">
+                    <i class="fas fa-lock"></i> هذا التطبيق يتطلب عضوية VIP
+                </p>
+                <button class="main-btn vip" onclick="showVipModal()" style="margin-top: 10px; padding: 10px;">
+                    <i class="fas fa-crown"></i> اشترك في VIP
+                </button>
+            </div>
         </div>
     </div>
 
@@ -805,20 +1041,85 @@
     <div class="notification" id="notification"></div>
 
     <script>
-        // === البيانات ===
-        const apps = [
+        // === البيانات الأساسية ===
+        const freeApps = [
             {
-                id: 1,
+                id: "free1",
                 title: "DEEPSEEK V1",
                 desc: "أداة ذكاء اصطناعي قوية تمكنك من تنفيذ أوامر برمجية معقدة بكفاءة عالية.",
                 img: "https://yt3.googleusercontent.com/sUk6EbUJHIIBobq7jvxGGSrCCM_9Jghcr7Vy-MvgZkMfq1iO5G51toLDqhffy-xl_sKh5w3X8b0=s900-c-k-c0x00ffffff-no-rj",
-                cat: "tools",
-                size: "15 MB",
-                ver: "الإصدار 1.0.5",
-                link: "https://www.mediafire.com/file/l37ibtz01lzbr05/HACK+DEEPSEK+V1.txt/file"
+                cat: "free",
+                size: "15.2 MB",
+                ver: "1.0.5 Pro",
+                status: "مجاني"
+            },
+            {
+                id: "free2",
+                title: "ChatGPT Arabic",
+                desc: "نسخة محسنة من ChatGPT مع دعم ممتاز للغة العربية.",
+                img: "https://static.vecteezy.com/system/resources/previews/021/608/790/non_2x/chatgpt-logo-chatgpt-icon-on-green-background-free-vector.jpg",
+                cat: "free",
+                size: "12.8 MB",
+                ver: "2.1.0",
+                status: "مجاني"
+            },
+            {
+                id: "free3",
+                title: "AI Image Generator",
+                desc: "أداة مجانية لإنشاء الصور بالذكاء الاصطناعي بجودة عالية.",
+                img: "https://static.vecteezy.com/system/resources/previews/024/553/080/non_2x/ai-generated-ai-artificial-intelligence-logo-icon-vector.jpg",
+                cat: "free",
+                size: "18.5 MB",
+                ver: "1.5.3",
+                status: "مجاني"
             }
         ];
 
+        // تطبيقات VIP
+        const vipApps = [
+            {
+                id: "vip1",
+                title: "DEEPSEEK VIP",
+                desc: "نسخة VIP المميزة مع مزايا حصرية وسرعات تحميل فائقة.",
+                img: "https://yt3.googleusercontent.com/sUk6EbUJHIIBobq7jvxGGSrCCM_9Jghcr7Vy-MvgZkMfq1iO5G51toLDqhffy-xl_sKh5w3X8b0=s900-c-k-c0x00ffffff-no-rj",
+                cat: "vip",
+                size: "25.5 MB",
+                ver: "2.0.0 VIP",
+                status: "حصري"
+            },
+            {
+                id: "vip2",
+                title: "GPT-4 Arabic Pro",
+                desc: "أقوى نسخة عربية من GPT-4 مع دعم كامل للغة العربية.",
+                img: "https://png.pngtree.com/png-vector/20221018/ourmid/pngtree-chatgpt-ai-technology-vector-png-image_6381733.png",
+                cat: "vip",
+                size: "32.1 MB",
+                ver: "1.5.0 VIP",
+                status: "حصري"
+            },
+            {
+                id: "vip3",
+                title: "Midjourney VIP",
+                desc: "أداة إنشاء الصور بالذكاء الاصطناعي بجودة 4K غير محدودة.",
+                img: "https://static.vecteezy.com/system/resources/previews/022/484/506/non_2x/ai-generated-midjourney-logo-free-png.png",
+                cat: "vip",
+                size: "45.3 MB",
+                ver: "3.2.1 VIP",
+                status: "حصري"
+            },
+            {
+                id: "vip4",
+                title: "AI Video Creator",
+                desc: "إنشاء مقاطع فيديو احترافية بالذكاء الاصطناعي.",
+                img: "https://cdn-icons-png.flaticon.com/512/3161/3161837.png",
+                cat: "vip",
+                size: "52.7 MB",
+                ver: "2.3.0 VIP",
+                status: "حصري"
+            }
+        ];
+        
+        let currentApp = null;
         let currentLink = "";
         let currentThemeIndex = 0;
         let musicEnabled = false;
@@ -829,46 +1130,53 @@
         // معرفة الموقع
         const siteKnowledge = {
             name: "SABER • 55",
-            description: "منصة عربية متكاملة للذكاء الاصطناعي والأدوات التقنية",
-            features: [
-                "أداة DEEPSEEK V1 للذكاء الاصطناعي المتقدم",
-                "نظام VIP مع علامة تحقق ذهبية",
-                "مساعد ذكي عربي متخصص في الموقع",
-                "واجهة مستخدم عربية متطورة",
-                "تغيير ألوان ديناميكي",
-                "موسيقى خلفية مريحة",
-                "تحميل مباشر وسريع"
-            ],
-            vipFeatures: [
-                "علامة VIP ذهبية بجانب اسمك",
-                "تحميل فائق السرعة",
-                "دعم فوري ومميز",
-                "محتوى حصري",
-                "أولوية في التحديثات"
-            ],
-            howToVip: "للحصول على كود VIP، اضغط على زر النار 🔥 ثم أدخل الكود الذي تحصل عليه من الدعم الفني"
+            description: "منصة عربية متكاملة للذكاء الاصطناعي والأدوات التقنية"
         };
 
         window.onload = () => {
             checkUser();
-            render(apps);
+            renderAllApps();
             setupTabs();
             setupSearch();
             setupMusic();
             setupThemeButton();
             setupVIPButton();
             setupUserButton();
+            setupVipSideButton();
             checkVIPStatus();
             loadSavedTheme();
-            
-            // رسالة ترحيبية بعد ثانية
-            setTimeout(() => {
-                if (!localStorage.getItem('welcomeShown')) {
-                    showNotification("🚀 مرحباً بك في SABER • 55 - منصة الذكاء الاصطناعي العربية", "#8A2BE2");
-                    localStorage.setItem('welcomeShown', 'true');
-                }
-            }, 1000);
         };
+
+        // === إعداد زر VIP الجانبي ===
+        function setupVipSideButton() {
+            const vipSideBtn = document.getElementById('vipSideBtn');
+            
+            vipSideBtn.addEventListener('click', () => {
+                const isVIP = checkVIPStatus();
+                
+                if (isVIP) {
+                    // إذا كان VIP، يفتح تبويب VIP
+                    document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+                    const vipTab = document.querySelector('.vip-tab');
+                    vipTab.classList.add('active');
+                    renderVipApps();
+                } else {
+                    // إذا لم يكن VIP، يظهر Alert احترافي
+                    showVipAlert();
+                }
+            });
+        }
+
+        // === إظهار Alert VIP احترافي ===
+        function showVipAlert() {
+            document.getElementById('vipAlertOverlay').classList.add('active');
+            document.getElementById('vipAlert').classList.add('active');
+        }
+
+        function hideVipAlert() {
+            document.getElementById('vipAlertOverlay').classList.remove('active');
+            document.getElementById('vipAlert').classList.remove('active');
+        }
 
         // === إعداد زر الـ VIP ===
         function setupVIPButton() {
@@ -915,7 +1223,6 @@
             activateBtn.disabled = true;
             
             try {
-                // محاولة الاتصال بدالة Netlify Functions للتحقق من VIP
                 const response = await fetch(`${NETLIFY_FUNCTIONS_URL}/check-vip`, {
                     method: 'POST',
                     headers: {
@@ -973,7 +1280,6 @@
             activateBtn.innerHTML = '<i class="fas fa-bolt" style="margin-left: 8px;"></i> تفعيل الآن';
             activateBtn.disabled = false;
             
-            // تأثير خطأ
             document.getElementById('vipCodeInput').style.borderColor = "#ff6b6b";
             document.getElementById('vipCodeInput').style.boxShadow = "0 0 15px rgba(255,0,0,0.3)";
             
@@ -987,7 +1293,6 @@
         function checkVIPLocally(code, user, messageEl, activateBtn) {
             const codeUpper = code.trim().toUpperCase();
             
-            // كود تجريبي بسيط للاختبار (يمكن إزالته لاحقاً)
             const validCode = codeUpper === "SABER55VIP" || 
                              codeUpper === "VIP55TEST" || 
                              codeUpper === "TESTVIP55";
@@ -1015,15 +1320,24 @@
             const expiry = localStorage.getItem('vipExpiry');
             const vipBadge = document.getElementById('vipBadge');
             const header = document.querySelector('.header');
+            const vipTab = document.querySelector('.vip-tab');
+            const vipSideBtn = document.getElementById('vipSideBtn');
             
             if (user && vipUser === user && expiry) {
                 const now = Date.now();
                 if (now < parseInt(expiry)) {
+                    // VIP نشط
                     vipBadge.style.display = 'inline-flex';
                     header.classList.add('vip-active');
+                    if (vipTab) vipTab.style.display = 'block';
+                    if (vipSideBtn) {
+                        vipSideBtn.style.background = 'linear-gradient(135deg, var(--vip-gold), #FFA500)';
+                        vipSideBtn.title = 'التطبيقات الحصرية - أنت عضو VIP';
+                    }
                     updateVIPRemainingTime(parseInt(expiry));
                     return true;
                 } else {
+                    // انتهت صلاحية VIP
                     clearVIPData();
                     return false;
                 }
@@ -1059,9 +1373,18 @@
             document.getElementById('vipBadge').style.display = 'none';
             document.querySelector('.header').classList.remove('vip-active');
             
+            const vipTab = document.querySelector('.vip-tab');
+            if (vipTab) vipTab.style.display = 'none';
+            
             const vipBtn = document.getElementById('vipBtn');
             if (vipBtn) {
                 vipBtn.title = 'تفعيل VIP';
+            }
+            
+            const vipSideBtn = document.getElementById('vipSideBtn');
+            if (vipSideBtn) {
+                vipSideBtn.style.background = 'linear-gradient(135deg, #666, #444)';
+                vipSideBtn.title = 'التطبيقات الحصرية (تتطلب VIP)';
             }
         }
 
@@ -1187,31 +1510,275 @@
         function getSiteBasedResponse(message) {
             const lowerMessage = message.toLowerCase();
             
-            // استعلامات عن الموقع
             if (lowerMessage.includes('مرحبا') || lowerMessage.includes('اهلا') || lowerMessage.includes('hello')) {
                 return `مرحباً بك في ${siteKnowledge.name}! 👋\n\nأنا المساعد الذكي الخاص بالموقع.\n\nيمكنني مساعدتك في:\n• شرح ميزات الموقع\n• مساعدة في تفعيل VIP\n• شرح كيفية استخدام الأدوات\n• أي استفسارات أخرى`;
             
             } else if (lowerMessage.includes('موقع') || lowerMessage.includes('saber') || lowerMessage.includes('سابر')) {
-                return `🎯 **${siteKnowledge.name}** - ${siteKnowledge.description}\n\n📌 **المميزات الرئيسية:**\n${siteKnowledge.features.map(f => `• ${f}`).join('\n')}\n\n💎 **لتفعيل VIP:**\n${siteKnowledge.howToVip}`;
+                return `🎯 **${siteKnowledge.name}** - ${siteKnowledge.description}\n\n📌 **المميزات:**\n• تطبيقات ذكاء اصطناعي حصرية\n• نظام VIP مع محتوى خاص\n• دعم عربي متكامل\n• تحديثات مستمرة`;
             
             } else if (lowerMessage.includes('vip') || lowerMessage.includes('في أي بي') || lowerMessage.includes('علامة') || lowerMessage.includes('ذهب')) {
-                return `👑 **نظام VIP في ${siteKnowledge.name}:**\n\n✨ **مزايا العضوية الذهبية:**\n${siteKnowledge.vipFeatures.map(f => `• ${f}`).join('\n')}\n\n🔑 **كيفية الحصول على VIP:**\n1. اضغط على زر النار 🔥 في الأعلى\n2. أدخل كود التفعيل\n3. استمتع بالمزايا الحصرية!\n\n💡 **ملاحظة:** علامة التاج الذهبية 🏆 تظهر بجانب اسم الأعضاء النشطين.`;
+                return `👑 **نظام VIP في ${siteKnowledge.name}:**\n\n✨ **المزايا:**\n• تطبيقات حصرية غير متوفرة للعموم\n• تحميل فائق السرعة\n• علامة VIP ذهبية\n• دعم فوري\n• تحديثات أولوية\n\n🔑 **للاشتراك:** اضغط على زر VIP في الأعلى`;
             
             } else if (lowerMessage.includes('ديب سيك') || lowerMessage.includes('deepseek') || lowerMessage.includes('أداة')) {
-                return `🤖 **${apps[0].title}:**\n\n${apps[0].desc}\n\n🔧 **طريقة الاستخدام:**\n1. اضغط على الأداة من القائمة\n2. اضغط "تحميل الآن"\n3. استخدم الأداة لتنفيذ الأوامر البرمجية المعقدة\n\n💡 **ملاحظة:** الأداة متاحة للجميع، لكن أعضاء VIP يحصلون على تحميل أسرع ودعم فوري.`;
-            
-            } else if (lowerMessage.includes('تحميل') || lowerMessage.includes('نزل')) {
-                return `📥 **طريقة التحميل:**\n\n1. تصفح الأدوات المتاحة\n2. اضغط على الأداة التي تريدها\n3. اضغط زر "تحميل الآن"\n4. سيتم فتح رابط التحميل مباشرة\n\n⚡ **لأعضاء VIP:** التحميل أسرع وبدون إعلانات!`;
-            
-            } else if (lowerMessage.includes('مساعدة') || lowerMessage.includes('مساعده') || lowerMessage.includes('help')) {
-                return `🆘 **مركز المساعدة:**\n\nيمكنني مساعدتك في:\n1. شرح ميزات الموقع\n2. طريقة استخدام الأدوات\n3. تفعيل نظام VIP\n4. حل المشاكل التقنية\n\n💬 **اطرح سؤالك وسأجيب عليه!**`;
+                return `🤖 **DEEPSEEK V1:**\n\nأداة ذكاء اصطناعي قوية للبرمجة.\n\n💡 **متاحة للجميع مجاناً!**`;
             
             } else if (lowerMessage.includes('شكرا') || lowerMessage.includes('thanks') || lowerMessage.includes('ممتاز')) {
-                return `🙏 **شكراً لك!**\n\nيسعدني أن أكون في خدمتك.\nلا تتردد في سؤالي عن أي شيء يتعلق بـ ${siteKnowledge.name}.\n\n✨ **نصيحة:** جرب خاصية VIP لتجربة أفضل!`;
+                return `🙏 **شكراً لك!**\n\nيسعدني أن أكون في خدمتك.`;
             
             } else {
-                return `🤔 **سؤال رائع!**\n\nلدي معرفة كاملة بموقع ${siteKnowledge.name}.\n\nيمكنني الإجابة عن:\n• ميزات الموقع وخدماته\n• شرح نظام VIP والعلامة الذهبية\n• طريقة استخدام أدوات الذكاء الاصطناعي\n• أي استفسار تقني\n\n💡 **جرب أن تسأل عن:**\n"ما هي مزايا VIP؟"\n"كيف أستخدم DeepSeek؟"\n"ما هو موقع SABER • 55؟"`;
+                return `🤔 يمكنني الإجابة عن:\n• ميزات الموقع\n• نظام VIP\n• كيفية التحميل\n• أي استفسار آخر`;
             }
+        }
+
+        // === إظهار تبويب ===
+        function showTab(cat) {
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelector(`.tab[data-cat="${cat}"]`).classList.add('active');
+            
+            if (cat === 'all') {
+                renderAllApps();
+            } else if (cat === 'free') {
+                renderFreeApps();
+            } else if (cat === 'vip') {
+                if (checkVIPStatus()) {
+                    renderVipApps();
+                } else {
+                    showVipAlert();
+                    document.querySelector('.tab[data-cat="free"]').click();
+                }
+            }
+        }
+
+        // === عرض جميع التطبيقات ===
+        function renderAllApps() {
+            const grid = document.getElementById('grid');
+            grid.innerHTML = '';
+            
+            // عرض التطبيقات المجانية فقط في "الكل"
+            freeApps.forEach(app => {
+                createAppCard(app, false);
+            });
+        }
+
+        // === عرض التطبيقات المجانية ===
+        function renderFreeApps() {
+            const grid = document.getElementById('grid');
+            grid.innerHTML = '';
+            
+            freeApps.forEach(app => {
+                createAppCard(app, false);
+            });
+        }
+
+        // === عرض تطبيقات VIP ===
+        function renderVipApps() {
+            const grid = document.getElementById('grid');
+            grid.innerHTML = '';
+            
+            if (vipApps.length === 0) {
+                grid.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 40px;">
+                        <i class="fas fa-crown" style="font-size: 3rem; color: var(--vip-gold); margin-bottom: 15px;"></i>
+                        <h3 style="color: var(--vip-gold); margin-bottom: 10px;">لا توجد تطبيقات VIP حالياً</h3>
+                        <p style="color: #aaa;">سيتم إضافة تطبيقات حصرية قريباً لأعضاء VIP</p>
+                    </div>
+                `;
+            } else {
+                vipApps.forEach(app => {
+                    createAppCard(app, true);
+                });
+            }
+        }
+
+        // === إنشاء بطاقة تطبيق ===
+        function createAppCard(app, isVip) {
+            const grid = document.getElementById('grid');
+            const card = document.createElement('div');
+            card.className = `card ${isVip ? 'vip-card' : ''}`;
+            card.innerHTML = `
+                <img src="${app.img}" alt="${app.title}" onerror="this.src='https://via.placeholder.com/80/333/fff?text=${app.title}'">
+                <div class="card-title">${app.title} ${isVip ? '👑' : ''}</div>
+                <div class="card-desc">${app.desc}</div>
+                <button class="card-btn" onclick="openDetail('${app.id}', ${isVip})">
+                    <i class="fas fa-download"></i> ${isVip ? 'تحميل VIP' : 'تحميل'}
+                </button>
+            `;
+            grid.appendChild(card);
+        }
+
+        // === إعداد التبويبات ===
+        function setupTabs() {
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const cat = tab.dataset.cat;
+                    showTab(cat);
+                });
+            });
+        }
+
+        // === البحث ===
+        function setupSearch() {
+            const search = document.getElementById('search');
+            search.addEventListener('input', () => {
+                const term = search.value.toLowerCase();
+                const grid = document.getElementById('grid');
+                grid.innerHTML = '';
+                
+                // تحديد التبويب النشط
+                const activeTab = document.querySelector('.tab.active');
+                const activeCat = activeTab.dataset.cat;
+                
+                let appsToSearch = [];
+                
+                if (activeCat === 'all') {
+                    appsToSearch = [...freeApps];
+                } else if (activeCat === 'free') {
+                    appsToSearch = [...freeApps];
+                } else if (activeCat === 'vip' && checkVIPStatus()) {
+                    appsToSearch = [...vipApps];
+                }
+                
+                const results = appsToSearch.filter(a => 
+                    a.title.toLowerCase().includes(term) || 
+                    a.desc.toLowerCase().includes(term)
+                );
+                
+                if (results.length === 0) {
+                    grid.innerHTML = `
+                        <div style="grid-column: 1/-1; text-align: center; padding: 40px;">
+                            <i class="fas fa-search" style="font-size: 2rem; color: #888; margin-bottom: 15px;"></i>
+                            <h3 style="color: #aaa;">لم يتم العثور على تطبيقات</h3>
+                            <p style="color: #666;">حاول البحث بكلمات أخرى</p>
+                        </div>
+                    `;
+                } else {
+                    results.forEach(app => {
+                        const isVip = app.cat === 'vip';
+                        createAppCard(app, isVip);
+                    });
+                }
+            });
+        }
+
+        // === فتح تفاصيل التطبيق ===
+        function openDetail(appId, isVip = false) {
+            let app;
+            
+            if (isVip) {
+                app = vipApps.find(a => a.id === appId);
+                if (!app) {
+                    showNotification("❌ التطبيق غير موجود", "#ff6b6b");
+                    return;
+                }
+                
+                // التحقق من صلاحية VIP
+                if (!checkVIPStatus()) {
+                    showNotification("🔒 هذا التطبيق يتطلب عضوية VIP", "#ff6b6b");
+                    showVipAlert();
+                    return;
+                }
+            } else {
+                app = freeApps.find(a => a.id === appId);
+            }
+            
+            if (!app) return;
+            
+            currentApp = app;
+            
+            document.getElementById('mImg').src = app.img;
+            document.getElementById('mTitle').innerText = app.title;
+            document.getElementById('mDesc').innerText = app.desc;
+            document.getElementById('mSize').innerText = app.size;
+            document.getElementById('mVer').innerText = app.ver;
+            document.getElementById('mCat').innerText = isVip ? 'VIP حصري' : 'مجاني';
+            document.getElementById('mStatus').innerText = app.status || (isVip ? 'VIP' : 'مجاني');
+            
+            // إعادة تعيين الأزرار
+            document.getElementById('startBtn').style.display = 'block';
+            document.getElementById('timerArea').style.display = 'none';
+            document.getElementById('finalBtn').style.display = 'none';
+            document.getElementById('vipRequired').style.display = 'none';
+            
+            openModal('detailModal');
+        }
+
+        // === بدء عملية التحميل ===
+        function startDownload() {
+            if (!currentApp) return;
+            
+            const isVip = currentApp.cat === 'vip';
+            
+            // إذا كان تطبيق VIP والمسخدم ليس VIP
+            if (isVip && !checkVIPStatus()) {
+                document.getElementById('vipRequired').style.display = 'block';
+                document.getElementById('startBtn').style.display = 'none';
+                return;
+            }
+            
+            // بدء العداد
+            document.getElementById('startBtn').style.display = 'none';
+            document.getElementById('timerArea').style.display = 'block';
+            
+            let time = 10;
+            const timerCount = document.getElementById('timerCount');
+            const fill = document.getElementById('fill');
+            
+            const timer = setInterval(() => {
+                time--;
+                timerCount.innerText = time;
+                fill.style.width = `${(10 - time) * 10}%`;
+                
+                if(time <= 0) {
+                    clearInterval(timer);
+                    document.getElementById('timerArea').style.display = 'none';
+                    
+                    // إظهار زر فتح الرابط
+                    document.getElementById('finalBtn').style.display = 'block';
+                    
+                    // إنشاء رابط افتراضي
+                    if (isVip) {
+                        currentLink = `https://vip.saber55.com/download/${currentApp.id}`;
+                    } else {
+                        currentLink = `https://saber55.com/download/${currentApp.id}`;
+                    }
+                    
+                    showNotification("✅ تم تجهيز الرابط بنجاح!", "#00b894");
+                }
+            }, 1000);
+        }
+
+        // === فتح رابط التحميل ===
+        function goLink() {
+            if(currentLink) {
+                window.open(currentLink, '_blank');
+                closeModal('detailModal');
+                showNotification("📥 تم فتح رابط التحميل", "#00b894");
+            }
+        }
+
+        // === إظهار نافذة VIP ===
+        function showVipModal() {
+            hideVipAlert();
+            openModal('vipModal');
+        }
+
+        function openModal(id) {
+            document.getElementById(id).classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            if (id === 'vipModal') {
+                document.getElementById('vipCodeInput').value = '';
+                document.getElementById('vipMessage').innerHTML = '';
+                const btn = document.getElementById('activateVipBtn');
+                btn.innerHTML = '<i class="fas fa-bolt" style="margin-left: 8px;"></i> تفعيل الآن';
+                btn.disabled = false;
+                btn.style.background = "linear-gradient(135deg, #FFD700, #FFA500)";
+            }
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+            document.body.style.overflow = 'auto';
         }
 
         // === الدوال المساعدة ===
@@ -1291,89 +1858,6 @@
             document.getElementById('userDisplay').innerText = '';
             closeModal('logoutModal');
             openModal('loginModal');
-        }
-
-        // === عرض التطبيقات ===
-        function render(appsList) {
-            const grid = document.getElementById('grid');
-            grid.innerHTML = '';
-            
-            appsList.forEach(app => {
-                const card = document.createElement('div');
-                card.className = 'card';
-                card.innerHTML = `
-                    <img src="${app.img}" alt="${app.title}" onerror="this.src='https://via.placeholder.com/80/333/fff?text=${app.title}'">
-                    <div class="card-title">${app.title}</div>
-                    <div class="card-desc">${app.desc}</div>
-                    <button class="card-btn" onclick="openDetail(${app.id})">
-                        <i class="fas fa-download"></i> تحميل
-                    </button>
-                `;
-                grid.appendChild(card);
-            });
-        }
-
-        function setupTabs() {
-            document.querySelectorAll('.tab').forEach(tab => {
-                tab.addEventListener('click', () => {
-                    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-                    tab.classList.add('active');
-                    
-                    const cat = tab.dataset.cat;
-                    if(cat === 'all') render(apps);
-                    else render(apps.filter(a => a.cat === cat));
-                });
-            });
-        }
-
-        function setupSearch() {
-            const search = document.getElementById('search');
-            search.addEventListener('input', () => {
-                const term = search.value.toLowerCase();
-                const filtered = apps.filter(a => 
-                    a.title.toLowerCase().includes(term) || 
-                    a.desc.toLowerCase().includes(term)
-                );
-                render(filtered);
-            });
-        }
-
-        function openDetail(id) {
-            const app = apps.find(a => a.id === id);
-            if(!app) return;
-            
-            currentLink = app.link;
-            document.getElementById('mImg').src = app.img;
-            document.getElementById('mTitle').innerText = app.title;
-            document.getElementById('mDesc').innerText = app.desc;
-            
-            openModal('detailModal');
-        }
-
-        function openModal(id) {
-            document.getElementById(id).classList.add('active');
-            document.body.style.overflow = 'hidden';
-            
-            if (id === 'vipModal') {
-                document.getElementById('vipCodeInput').value = '';
-                document.getElementById('vipMessage').innerHTML = '';
-                const btn = document.getElementById('activateVipBtn');
-                btn.innerHTML = '<i class="fas fa-bolt" style="margin-left: 8px;"></i> تفعيل الآن';
-                btn.disabled = false;
-                btn.style.background = "linear-gradient(135deg, #FFD700, #FFA500)";
-            }
-        }
-
-        function closeModal(id) {
-            document.getElementById(id).classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        function downloadApp() {
-            if(currentLink) {
-                window.open(currentLink, '_blank');
-                closeModal('detailModal');
-            }
         }
 
         // === إدارة الثيمات ===
